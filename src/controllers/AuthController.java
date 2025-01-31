@@ -10,6 +10,7 @@ public class AuthController {
     private final IUserRepository userRepo;
     private final Scanner scanner = new Scanner(System.in);
     private boolean isAdministrator = false;
+    private final Scanner scanner = new Scanner(System.in);
 
     public AuthController(IUserRepository userRepo) {
         this.userRepo = userRepo;
@@ -47,7 +48,7 @@ public class AuthController {
         System.out.print("Enter password: ");
         String password = scanner.next();
 
-        if(username.equals("Nurassyl") && password.equals("Erkejan7")) {
+        if (username.equals("Nurassyl") && password.equals("Erkejan7")) {
             isAdministrator = true;
         }
 
@@ -59,6 +60,7 @@ public class AuthController {
         System.out.println("Invalid username or password.");
         return false;
     }
+
     public boolean isAdministrator() {
         return isAdministrator;
     }

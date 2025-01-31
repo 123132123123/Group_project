@@ -10,10 +10,11 @@ public class UserController implements IUserController{
     public UserController(IUserRepository repo) {
         this.repo = repo;
     }
+
     @Override
-    public String createUser(String name, String surname, String gender) {
+    public String createUser(String username, String password, String name, String surname, int birthdate, String gender) {
         boolean male = gender.equalsIgnoreCase("male");
-        User user = new User(name, surname, male);
+        User user = new User(username, password, name, surname, birthdate, male);
         boolean created = repo.createUser(user);
         return (created) ? "User was created" : "User creation was failed";
     }
@@ -32,5 +33,11 @@ public class UserController implements IUserController{
             responce.append(user.toString()).append("\n");
         }
         return responce.toString();
+    }
+
+    @Override
+    public String getUserByUsername(String username) {
+        User user = repo.getUserByUsername(username);
+        return (user == null) ? "User was not found" : user.toString();
     }
 }

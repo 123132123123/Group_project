@@ -85,7 +85,15 @@ public class User {
                 '}';
     }
 
-    public Object getPassword() {
+    public String getPassword() {
         return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 }

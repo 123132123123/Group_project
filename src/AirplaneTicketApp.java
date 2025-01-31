@@ -10,7 +10,7 @@ public class AirplaneTicketApp {
     private final ITicketController ticketController;
     private final IAirplaneController airplaneController;
     private final IFlightController flightController;
-    private final AuthController authController;
+    private AuthController authController;
     private final Scanner scanner = new Scanner(System.in);
 
     public AirplaneTicketApp(ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController, AuthController authController) {

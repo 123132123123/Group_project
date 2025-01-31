@@ -1,6 +1,4 @@
-import controllers.ITicketController;
-import controllers.IAirplaneController;
-import controllers.IFlightController;
+import controllers.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,27 +7,41 @@ public class AirplaneTicketApp {
     private final ITicketController ticketController;
     private final IAirplaneController airplaneController;
     private final IFlightController flightController;
+    private AuthController authController;
     private final Scanner scanner = new Scanner(System.in);
-    private boolean isAdministrator = false;
 
-    public AirplaneTicketApp(ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController) {
+    public AirplaneTicketApp(IUserController userController, ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController) {
         this.ticketController = ticketController;
         this.airplaneController = airplaneController;
         this.flightController = flightController;
+        this.authController = new AuthController();
     }
 
     private void loginMenu() {
         System.out.println("Welcome to Airplane Ticket Management!");
-        System.out.println("Please log in to continue.");
-        System.out.print("Enter your username: ");
-        String username = scanner.next();
-        System.out.print("Enter your password: ");
-        String password = scanner.next();
-        System.out.println("Logging in...");
-        if(username.equals("Nurassyl") && password.equals("Erkejan7")) {
-            isAdministrator = true;
+        System.out.println("Do you have an account?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+        System.out.println("0. Exit");
+        System.out.print("Select an option (1 or 2): ");
+        int option = scanner.nextInt();
+        switch (option) {
+            case 1:
+                if(authController.login()) {
+
+                }
+                else {
+                    loginMenu();
+                }
+            case 2:
+                authController.register();
+                loginMenu();
+            case 0:
+                System.out.println("Exiting the application. Goodbye!");
+                System.exit(0);
+            default:
+                System.out.println("Invalid option!");
         }
-        System.out.println("Welcome, " + username + " to Airplane Ticket Management!");
     }
 
     private void adminMenu() {
@@ -55,7 +67,7 @@ public class AirplaneTicketApp {
     public void start() {
         while (true) {
             loginMenu();
-            if(isAdministrator) {
+            if(authController.isAdministrator()) {
                 adminMenu();
             }
             else {

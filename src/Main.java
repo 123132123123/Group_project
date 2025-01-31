@@ -37,7 +37,7 @@ public class Main {
         ITicketController ticketController = new TicketController(ticketRepo);
 
         // Launch the application
-        AirplaneTicketApp app = new AirplaneTicketApp(ticketController, airplaneController, flightController);
+        AirplaneTicketApp app = new AirplaneTicketApp(userController, ticketController, airplaneController, flightController);
         app.start();
 
         db.close();

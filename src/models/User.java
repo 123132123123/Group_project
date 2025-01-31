@@ -1,23 +1,43 @@
 package models;
 
+import java.time.LocalDate;
+
 public class User {
     private int id;
+    private String username;
+    private String password;
     private String name;
     private String surname;
+    private int birthdate;
     private boolean gender;
 
-    public User(){
+    public User(String username, String password, String name, String surname, LocalDate birthdate, String gender){
 
     }
 
-    public User(String name, String surname, boolean gender) {
+    public User(String username, String password, String name, String surname, int birthdate, boolean gender) {
+        setUsername(username);
+        setPassword(password);
         setName(name);
         setSurname(surname);
+        setBirthdate(birthdate);
         setGender(gender);
     }
 
-    public User(int id, String name, String surname, boolean gender) {
-        this(name, surname, gender);
+    private void setBirthdate(int birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    private void setPassword(String password) {
+        this.password = password;
+    }
+
+    private void setUsername(String username) {
+        this.username = username;
+    }
+
+    public User(int id, String username, String password, String name, String surname, int birthdate, boolean gender) {
+        this(username, password, name, surname, birthdate, gender);
         setId(id);
     }
 
@@ -61,5 +81,17 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", gender=" + gender +
                 '}';
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public int getBirthdate() {
+        return birthdate;
     }
 }

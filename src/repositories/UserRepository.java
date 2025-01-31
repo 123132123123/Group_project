@@ -80,4 +80,26 @@ public class UserRepository implements IUserRepository{
         return null;
     }
 
+    @Override
+    public User getUserByUsername(String username) {
+        Connection connection = null;
+        try {
+            connection = db.getConnection();
+            String sql ="SELECT * FROM users WHERE id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, username);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                return new User(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getBoolean("gender"));
+            }
+        }catch (SQLException e){
+            System.out.println("sql error:" + e.getMessage());
+        }
+        return null;
+    }
+
 }

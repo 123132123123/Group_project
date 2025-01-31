@@ -1,11 +1,4 @@
-import controllers.UserController;
-import controllers.IUserController;
-import controllers.FlightController;
-import controllers.IAirplaneController;
-import controllers.IFlightController;
-import controllers.ITicketController;
-import controllers.AirplaneController;
-import controllers.TicketController;
+import controllers.*;
 
 import data.PostgresDB;
 import data.IDB;
@@ -37,7 +30,7 @@ public class Main {
         ITicketController ticketController = new TicketController(ticketRepo);
 
         // Launch the application
-        AirplaneTicketApp app = new AirplaneTicketApp(ticketController, airplaneController, flightController);
+        AirplaneTicketApp app = new AirplaneTicketApp(ticketController, airplaneController, flightController, new AuthController(userRepo));
         app.start();
 
         db.close();

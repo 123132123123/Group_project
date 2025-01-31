@@ -1,3 +1,4 @@
+import controllers.AuthController;
 import controllers.ITicketController;
 import controllers.IAirplaneController;
 import controllers.IFlightController;
@@ -9,40 +10,78 @@ public class AirplaneTicketApp {
     private final ITicketController ticketController;
     private final IAirplaneController airplaneController;
     private final IFlightController flightController;
+    private AuthController authController;
     private final Scanner scanner = new Scanner(System.in);
 
-    public AirplaneTicketApp(ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController) {
+    public AirplaneTicketApp(ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController, AuthController authController) {
         this.ticketController = ticketController;
         this.airplaneController = airplaneController;
         this.flightController = flightController;
+        this.authController = authController;
     }
 
-    private void mainMenu() {
-        System.out.println();
+    private void loginMenu() {
         System.out.println("Welcome to Airplane Ticket Management!");
+        System.out.println("Do you have acaccount?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+        System.out.println("0. Exit");
+        System.out.print("Select an option (1-2): ");
+        int option = scanner.nextInt();
+        switch (option) {
+            case 1:
+                authController.login();
+            case 2:
+                authController.register();
+                loginMenu();
+            case 0:
+                System.out.println("Exiting the application. Goodbye!");
+                System.exit(0);
+            default:
+                System.out.println("Please select a valid option!");
+        }
+    }
+
+    private void adminMenu() {
+        System.out.println();
         System.out.println("Select one of the following options:");
-        System.out.println("1. Manage Flights");
+        System.out.println("1. Manage Tickets");
         System.out.println("2. Manage Airplanes");
-        System.out.println("3. Manage Tickets");
+        System.out.println("3. Manage Flights");
         System.out.println("0. Exit");
         System.out.println();
         System.out.print("Select an option (1-3): ");
     }
 
+    private void mainMenu() {
+        System.out.println();
+        System.out.println("Select one of the following options:");
+        System.out.println("1. Manage Tickets");
+        System.out.println("0. Exit");
+        System.out.println();
+        System.out.print("Select an option (0-1): ");
+    }
+
     public void start() {
         while (true) {
-            mainMenu();
+            loginMenu();
+            if(authController.isAdministrator()) {
+                adminMenu();
+            }
+            else {
+                mainMenu();
+            }
             try {
                 int option = scanner.nextInt();
                 switch (option) {
                     case 1:
-                        manageFlightsMenu();
+                        manageTicketsMenu();
                         break;
                     case 2:
                         manageAirplanesMenu();
                         break;
                     case 3:
-                        manageTicketsMenu();
+                        manageFlightsMenu();
                         break;
                     case 0:
                         System.out.println("Exiting the application. Goodbye!");

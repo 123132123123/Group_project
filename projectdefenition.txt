@@ -17,18 +17,25 @@ Airplane Management:
 
 Flight Management:
   Flights have departure and arrival cities, times, available seats, and ticket prices.
-  Admins can change flight schedules.
   Users can search for flights.
 
-Ticket Booking & Cancellation:
+Ticket Booking
    Users can book tickets for available flights.
    Seat numbers are assigned automatically.
-   Users can cancel tickets before departure.
-   Admins can track cancellations.
+
 
 Database & Security:
    Uses PostgreSQL for storing user, airplane, flight, and ticket data.
    Passwords are hashed for security.
    Logs track important actions like logins and cancellations.
+
+Payment system
+    The payment system allows users to securely pay for tickets using credit cards, digital wallets, or bank transfers.
+    Transactions are processed with encryption and fraud detection to ensure safety, and refunds are handled based on airline policies
+
+Rating and comment
+    Users can rate flights and provide feedback.
+    Ratings are stored in the database to help other users make informed decisions.
+    Admins can review ratings and address concerns.
 
 This system makes flight management simple and organized.

@@ -1,10 +1,11 @@
 package controllers;
+import Interface.IUserController;
 import models.User;
 import repositories.IUserRepository;
 
 import java.util.List;
 
-public class UserController implements IUserController{
+public class UserController implements IUserController {
     private final IUserRepository repo;
 
     public UserController(IUserRepository repo) {

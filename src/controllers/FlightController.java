@@ -1,11 +1,12 @@
 package controllers;
+import Interface.IFlightController;
 import models.Flight;
 import repositories.IFlightRepository;
 
 import java.util.List;
 
 
-public class FlightController implements IFlightController{
+public class FlightController implements IFlightController {
     private final IFlightRepository repo;
 
     public FlightController(IFlightRepository repo) {

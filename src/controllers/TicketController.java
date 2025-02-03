@@ -1,10 +1,11 @@
 package controllers;
 
+import Interface.ITicketController;
 import models.Tickets;
 import repositories.ITicketRepository;
 
 import java.util.List;
-public class TicketController implements ITicketController{
+public class TicketController implements ITicketController {
     private final ITicketRepository repo;
 
     public TicketController(ITicketRepository repo) {

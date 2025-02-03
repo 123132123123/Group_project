@@ -1,4 +1,4 @@
-package controllers;
+package Interface;
 
 public interface IUserController {
 

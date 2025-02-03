@@ -1,3 +1,7 @@
+import Interface.IAirplaneController;
+import Interface.IFlightController;
+import Interface.ITicketController;
+import Interface.IUserController;
 import controllers.*;
 
 import data.PostgresDB;

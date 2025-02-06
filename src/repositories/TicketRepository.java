@@ -1,7 +1,7 @@
 package repositories;
 import data.IDB;
 import models.Tickets;
-import repositories.ITicketRepository;
+import repositories.rInterface.ITicketRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

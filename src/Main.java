@@ -1,18 +1,18 @@
-import Interface.IAirplaneController;
-import Interface.IFlightController;
-import Interface.ITicketController;
-import Interface.IUserController;
+import controllers.Interface.IAirplaneController;
+import controllers.Interface.IFlightController;
+import controllers.Interface.ITicketController;
+import controllers.Interface.IUserController;
 import controllers.*;
 
 import data.PostgresDB;
 import data.IDB;
 
 import repositories.UserRepository;
-import repositories.IUserRepository;
+import repositories.rInterface.IUserRepository;
 import repositories.FlightRepository;
-import repositories.IAirplaneRepository;
-import repositories.IFlightRepository;
-import repositories.ITicketRepository;
+import repositories.rInterface.IAirplaneRepository;
+import repositories.rInterface.IFlightRepository;
+import repositories.rInterface.ITicketRepository;
 import repositories.AirplaneRepository;
 import repositories.TicketRepository;
 

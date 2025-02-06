@@ -1,7 +1,7 @@
 import controllers.AuthController;
-import Interface.ITicketController;
-import Interface.IAirplaneController;
-import Interface.IFlightController;
+import controllers.Interface.ITicketController;
+import controllers.Interface.IAirplaneController;
+import controllers.Interface.IFlightController;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

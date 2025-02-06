@@ -1,7 +1,7 @@
 package controllers;
-import Interface.IFlightController;
+import controllers.Interface.IFlightController;
 import models.Flight;
-import repositories.IFlightRepository;
+import repositories.rInterface.IFlightRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package Interface;
+package controllers.Interface;
 
 public interface IUserController {
 

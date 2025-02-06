@@ -1,12 +1,13 @@
 package repositories;
 import data.IDB;
 import models.User;
+import repositories.rInterface.IUserRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements IUserRepository{
+public class UserRepository implements IUserRepository {
     private final IDB db;
 
     public UserRepository(IDB db) {

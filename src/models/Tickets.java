@@ -3,15 +3,24 @@ package models;
 public class Tickets {
     private int id;
     private int bookingId;
+    private String ticket_type;
     private String seatNumber;
     private double price;
 
-    public Tickets() {}
+    public Tickets(int bookingId, String ticketType, String seatNumber, double price) {}
 
     public Tickets(int bookingId, String seatNumber, double price) {
         this.bookingId = bookingId;
         this.seatNumber = seatNumber;
         this.price = price;
+    }
+
+    public String getTicket_type() {
+        return ticket_type;
+    }
+
+    public void setTicket_type(String ticket_type) {
+        this.ticket_type = ticket_type;
     }
 
     public int getId() {
@@ -51,6 +60,7 @@ public class Tickets {
         return "Ticket{" +
                 "id=" + id +
                 ", bookingId=" + bookingId +
+                ", ticket type='" + ticket_type + '\'' +
                 ", seatNumber='" + seatNumber + '\'' +
                 ", price=" + price +
                 '}';

@@ -253,12 +253,14 @@ public class AirplaneTicketApp {
     private void createTicketMenu() {
         System.out.println("Enter booking ID:");
         int bookingId = scanner.nextInt();
+        System.out.println("Enter ticket type:");
+        String ticketType = scanner.next();
         System.out.println("Enter seat number:");
         String seatNumber = scanner.next();
         System.out.println("Enter ticket price:");
         double price = scanner.nextDouble();
 
-        String response = ticketController.createTicket(bookingId, seatNumber, price);
+        String response = ticketController.createTicket(bookingId,ticketType, seatNumber, price);
         System.out.println(response);
     }
 

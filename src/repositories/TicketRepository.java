@@ -16,12 +16,13 @@ public class TicketRepository implements ITicketRepository{
     @Override
     public boolean createTicket(Tickets ticket) {
         try (Connection connection = db.getConnection()) {
-            String sql = "INSERT INTO tickets (booking_id, seatNumber, price) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO tickets (booking_id, ticket_type, seatNumber, price) VALUES (?, ?, ?, ?)";
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setInt(1, ticket.getBookingId());
-            st.setString(2, ticket.getSeatNumber());
-            st.setDouble(3, ticket.getPrice());
+            st.setString(2, ticket.getTicket_type());
+            st.setString(3, ticket.getSeatNumber());
+            st.setDouble(4, ticket.getPrice());
 
             st.execute();
             return true;

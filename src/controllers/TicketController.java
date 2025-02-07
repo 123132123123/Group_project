@@ -13,8 +13,8 @@ public class TicketController implements ITicketController {
     }
 
     @Override
-    public String createTicket(int bookingId, String seatNumber, double price) {
-        Tickets ticket = new Tickets(bookingId, seatNumber, price);
+    public String createTicket(int bookingId, String ticketType, String seatNumber, double price) {
+        Tickets ticket = new Tickets(bookingId, ticketType, seatNumber, price);
         boolean created = repo.createTicket(ticket);
         return (created) ? "Ticket was created successfully" : "Ticket creation failed";
     }

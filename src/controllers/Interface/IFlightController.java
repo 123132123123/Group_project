@@ -1,5 +1,6 @@
 package controllers.Interface;
 
+
 public interface IFlightController {
     String createFlight(String departureCity, String arrivalCity, int departureTime, int arrivalTime, int seats, double price);
 

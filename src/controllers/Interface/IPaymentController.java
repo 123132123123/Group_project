@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Interface;
 
 public interface IPaymentController {
     String createPayment(int ticketId, double amount, String paymentMethod);

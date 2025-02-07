@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Interface;
 
 public interface IReviewController {
     String createReview(int flightId, int userId, int rating, String comment);

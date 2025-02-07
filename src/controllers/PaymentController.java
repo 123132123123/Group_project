@@ -1,6 +1,7 @@
 package controllers;
+import controllers.Interface.IPaymentController;
 import models.Payment;
-import repositories.IPaymentRepositories;
+import repositories.rInterface.IPaymentRepositories;
 
 import java.util.List;
 

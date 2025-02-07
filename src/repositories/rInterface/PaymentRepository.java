@@ -1,4 +1,4 @@
-package repositories;
+package repositories.rInterface;
 import data.IDB;
 import models.Payment;
 

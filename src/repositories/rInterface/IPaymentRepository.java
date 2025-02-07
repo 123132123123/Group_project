@@ -6,10 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentRepository implements IPaymentRepositories {
+public class IPaymentRepository implements IPaymentRepositories {
     private final IDB db;
 
-    public PaymentRepository(IDB db) {
+    public IPaymentRepository(IDB db) {
         this.db = db;
     }
 

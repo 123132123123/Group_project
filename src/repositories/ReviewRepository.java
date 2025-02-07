@@ -1,12 +1,13 @@
 package repositories;
 import data.IDB;
 import models.Review;
+import repositories.rInterface.IReviewRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewRepository implements IReviewRepository{
+public class ReviewRepository implements IReviewRepository {
     private final IDB db;
 
     public ReviewRepository(IDB db) {

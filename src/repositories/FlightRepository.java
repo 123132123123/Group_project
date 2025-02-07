@@ -1,7 +1,7 @@
 package repositories;
 import data.IDB;
 import models.Flight;
-import repositories.IFlightRepository;
+import repositories.rInterface.IFlightRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

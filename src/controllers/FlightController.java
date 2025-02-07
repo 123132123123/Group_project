@@ -1,7 +1,7 @@
 package controllers;
-import Interface.IFlightController;
+import controllers.Interface.IFlightController;
 import models.Flight;
-import repositories.IFlightRepository;
+import repositories.rInterface.IFlightRepository;
 
 import java.util.List;
 
@@ -49,5 +49,10 @@ public class FlightController implements IFlightController {
     public String deleteFlight(int id) {
         boolean deleted = repo.deleteFlight(id);
         return (deleted) ? "Flight was deleted successfully" : "Flight deletion failed";
+    }
+
+    @Override
+    public String getAllDataByDate(String date) {
+        return "";
     }
 }

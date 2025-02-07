@@ -1,9 +1,12 @@
 import controllers.AuthController;
-import Interface.ITicketController;
-import Interface.IAirplaneController;
-import Interface.IFlightController;
+import controllers.Interface.ITicketController;
+import controllers.Interface.IAirplaneController;
+import controllers.Interface.IFlightController;
+import models.AllData;
+import models.AllDataDAO;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class AirplaneTicketApp {
@@ -11,6 +14,8 @@ public class AirplaneTicketApp {
     private final IAirplaneController airplaneController;
     private final IFlightController flightController;
     private AuthController authController;
+    private List<AllData> allData;
+    private AllDataDAO allDataDAO;
     private final Scanner scanner = new Scanner(System.in);
 
     public AirplaneTicketApp(ITicketController ticketController, IAirplaneController airplaneController, IFlightController flightController, AuthController authController) {
@@ -48,9 +53,10 @@ public class AirplaneTicketApp {
         System.out.println("1. Manage Tickets");
         System.out.println("2. Manage Airplanes");
         System.out.println("3. Manage Flights");
+        System.out.println("4. Get all data");
         System.out.println("0. Exit");
         System.out.println();
-        System.out.print("Select an option (1-3): ");
+        System.out.print("Select an option (1-4): ");
     }
 
     private void mainMenu() {
@@ -82,6 +88,13 @@ public class AirplaneTicketApp {
                         break;
                     case 3:
                         manageFlightsMenu();
+                        break;
+                    case 4:
+                        allDataDAO = new AllDataDAO();
+                        allData = allDataDAO.getAllData();
+                        for (AllData data : allData) {
+                            System.out.println(data);
+                        }
                         break;
                     case 0:
                         System.out.println("Exiting the application. Goodbye!");

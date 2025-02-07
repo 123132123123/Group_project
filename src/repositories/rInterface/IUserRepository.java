@@ -1,4 +1,4 @@
-package repositories;
+package repositories.rInterface;
 import models.User;
 
 import java.util.List;

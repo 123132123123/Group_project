@@ -1,9 +1,9 @@
 
 package controllers;
 
-import Interface.IAirplaneController;
+import controllers.Interface.IAirplaneController;
 import models.Airplanes;
-import repositories.IAirplaneRepository;
+import repositories.rInterface.IAirplaneRepository;
 
 import java.util.List;
 

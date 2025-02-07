@@ -1,4 +1,4 @@
-package Interface;
+package controllers.Interface;
 
 public interface ITicketController {
     String createTicket(int bookingId, String seatNumber, double price);

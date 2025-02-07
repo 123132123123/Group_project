@@ -1,4 +1,4 @@
-package Interface;
+package controllers.Interface;
 
 public interface IFlightController {
     String createFlight(String departureCity, String arrivalCity, int departureTime, int arrivalTime, int seats, double price);
@@ -10,4 +10,6 @@ public interface IFlightController {
     String updateFlightSeats(int id, int newSeats);
 
     String deleteFlight(int id);
+
+    String getAllDataByDate(String date);
 }

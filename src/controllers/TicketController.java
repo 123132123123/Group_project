@@ -1,8 +1,8 @@
 package controllers;
 
-import Interface.ITicketController;
+import controllers.Interface.ITicketController;
 import models.Tickets;
-import repositories.ITicketRepository;
+import repositories.rInterface.ITicketRepository;
 
 import java.util.List;
 public class TicketController implements ITicketController {

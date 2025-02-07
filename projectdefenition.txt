@@ -1,0 +1,41 @@
+Project Definition: Airplane Ticket Management System
+
+Overview:
+This is a simple Java application for managing flights, airplanes, and tickets. Users can register, book flights, and cancel tickets. Admins can manage flights and airplanes.
+
+Key Features:
+
+User Registration & Login:
+ Users sign up with a username, password, name, and birthdate.
+ Must be at least 18 years old to register.
+ Passwords are stored securely.
+ Admins and regular users have different access levels.
+
+Airplane Management:
+  Admins can add, update, and remove airplanes.
+  The system checks if an airplane exists before assigning it to a flight.
+
+Flight Management:
+  Flights have departure and arrival cities, times, available seats, and ticket prices.
+  Users can search for flights.
+
+Ticket Booking
+   Users can book tickets for available flights.
+   Seat numbers are assigned automatically.
+
+
+Database & Security:
+   Uses PostgreSQL for storing user, airplane, flight, and ticket data.
+   Passwords are hashed for security.
+   Logs track important actions like logins and cancellations.
+
+Payment system
+    The payment system allows users to securely pay for tickets using credit cards, digital wallets, or bank transfers.
+    Transactions are processed with encryption and fraud detection to ensure safety, and refunds are handled based on airline policies
+
+Rating and comment
+    Users can rate flights and provide feedback.
+    Ratings are stored in the database to help other users make informed decisions.
+    Admins can review ratings and address concerns.
+
+This system makes flight management simple and organized.

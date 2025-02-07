@@ -14,11 +14,6 @@ public class UserController implements IUserController {
     }
 
     @Override
-    public String createUser(String username, String password, String name, String surname, int birthdate, String gender) {
-        return "";
-    }
-
-    @Override
     public String createUser(String username, String password, String name, String surname, LocalDate birthdate, String gender) {
         boolean male = gender.equalsIgnoreCase("male");
         User user = new User(username, password, name, surname, birthdate, male);

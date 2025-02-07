@@ -1,8 +1,9 @@
 package controllers.Interface;
 
-public interface IUserController {
+import java.time.LocalDate;
 
-    String createUser(String username, String password, String name, String surname, int birthdate, String gender);
+public interface IUserController {
+    String createUser(String username, String password, String name, String surname, LocalDate birthdate, String gender);
 
     String getUserById(int id);
     String getAllUsers();

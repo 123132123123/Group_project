@@ -10,4 +10,6 @@ public interface IFlightController {
     String updateFlightSeats(int id, int newSeats);
 
     String deleteFlight(int id);
+
+    String getAllDataByDate(String date);
 }

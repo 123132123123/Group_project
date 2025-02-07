@@ -50,4 +50,9 @@ public class FlightController implements IFlightController {
         boolean deleted = repo.deleteFlight(id);
         return (deleted) ? "Flight was deleted successfully" : "Flight deletion failed";
     }
+
+    @Override
+    public String getAllDataByDate(String date) {
+        return "";
+    }
 }

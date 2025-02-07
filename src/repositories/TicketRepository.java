@@ -93,4 +93,27 @@ public class TicketRepository implements ITicketRepository{
         }
         return false;
     }
+
+    @Override
+    public Tickets getTicketByDestination(String destination) {
+        try (Connection connection = db.getConnection()) {
+            String sql = "SELECT * FROM tickets WHERE destination = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            st.setString(1, destination);
+            ResultSet rs = st.executeQuery();
+
+
+            if (rs.next()) {
+                return new Tickets(
+                        rs.getInt("id"),
+                        rs.getString("seatNumber"),
+                        rs.getDouble("price")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL error: " + e.getMessage());
+        }
+        return null;
+    }
 }

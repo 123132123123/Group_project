@@ -44,4 +44,10 @@ public class TicketController implements ITicketController {
         return (deleted) ? "Ticket was deleted successfully" : "Ticket deletion failed";
     }
 
+    @Override
+    public String getTicketByDestination(String destination) {
+        Tickets ticket = repo.getTicketByDestination(destination);
+        return (ticket == null) ? "Ticket was not found" : ticket.toString();
+    }
+
 }

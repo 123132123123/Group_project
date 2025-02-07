@@ -8,4 +8,6 @@ public interface ITicketController {
     String getAllTickets();
 
     String deleteTicket(int id);
+
+    String getTicketByDestination(String des);
 }

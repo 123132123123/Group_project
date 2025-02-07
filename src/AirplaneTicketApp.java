@@ -229,6 +229,7 @@ public class AirplaneTicketApp {
         System.out.println("1. Create a Ticket");
         System.out.println("2. View all Tickets");
         System.out.println("3. View Ticket by ID");
+        System.out.println("4. view Ticket by destination");
         System.out.println("0. Back to Main Menu");
         System.out.print("Select an option (1-3): ");
 
@@ -243,11 +244,20 @@ public class AirplaneTicketApp {
             case 3:
                 viewTicketByIdMenu();
                 break;
+            case 4:
+                viewTicketByDestinationMenu();
+                break;
             case 0:
                 return;
             default:
                 System.out.println("Invalid option!");
         }
+    }
+
+    private void viewTicketByDestinationMenu() {
+        System.out.println("Enter ticket Destination:");
+        String des = scanner.nextLine();
+        System.out.println(ticketController.getTicketByDestination(des));
     }
 
     private void createTicketMenu() {

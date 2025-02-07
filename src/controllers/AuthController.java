@@ -10,7 +10,6 @@ public class AuthController {
     private final IUserRepository userRepo;
     private final Scanner scanner = new Scanner(System.in);
     private boolean isAdministrator = false;
-    private final Scanner scanner = new Scanner(System.in);
 
     public AuthController(IUserRepository userRepo) {
         this.userRepo = userRepo;

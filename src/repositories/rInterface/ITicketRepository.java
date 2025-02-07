@@ -12,4 +12,6 @@ public interface ITicketRepository {
     List<Tickets> getAllTickets();
 
     boolean deleteTicket(int id);
+
+    Tickets getTicketByDestination(String destination);
 }

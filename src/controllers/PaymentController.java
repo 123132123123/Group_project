@@ -51,23 +51,4 @@ public class PaymentController implements IPaymentController {
         return (updated) ? "Payment status was updated successfully" : "Payment update failed";
     }
 
-    @Override
-    public String createReview(int flightId, int userId, int rating, String comment) {
-        return "";
-    }
-
-    @Override
-    public String getReviewById(int id) {
-        return "";
-    }
-
-    @Override
-    public String getReviewsByFlightId(int flightId) {
-        return "";
-    }
-
-    @Override
-    public String deleteReview(int id) {
-        return "";
-    }
 }

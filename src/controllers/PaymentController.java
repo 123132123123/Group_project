@@ -1,55 +1,66 @@
 package controllers;
+
 import controllers.Interface.IPaymentController;
 import models.Payment;
-import repositories.rInterface.IPaymentRepositories;
+import repositories.rInterface.IPaymentRepository;
+import strategy.CreditCardPayment;
+import strategy.PayPalPayment;
+import strategy.PaymentStrategy;
 
 import java.util.List;
 
-
 public class PaymentController implements IPaymentController {
-    private final IPaymentRepositories repo;
+    private final IPaymentRepository repo;
 
-    public PaymentController(IPaymentRepositories repo) {
+    public PaymentController(IPaymentRepository repo) {
         this.repo = repo;
     }
 
     @Override
-    public String createPayment(int ticketId, double amount, String paymentMethod) {
-        try {
-            if (amount <= 0) {
-                return "Payment failed: Amount must be greater than zero.";
-            }
-            Payment payment = new Payment(ticketId, amount, paymentMethod);
-            boolean created = repo.createPayment(payment);
-            return (created) ? "Payment was created successfully" : "Payment creation failed";
-        } catch (IllegalArgumentException e) {
-            return "Error: " + e.getMessage();
+    public String processPayment(int ticketId, double amount, String paymentMethod) {
+        PaymentStrategy paymentStrategy;
+
+        // Selecting strategy dynamically
+        switch (paymentMethod.toLowerCase()) {
+            case "credit_card":
+                paymentStrategy = new CreditCardPayment();
+                break;
+            case "paypal":
+                paymentStrategy = new PayPalPayment();
+                break;
+            default:
+                return "Invalid payment method!";
         }
+
+        // Create Payment instance using Strategy
+        Payment payment = new Payment(ticketId, amount, paymentMethod, paymentStrategy);
+
+        // Process payment using Strategy Pattern
+        boolean success = payment.processPayment();
+        if (success) {
+            boolean saved = repo.createPayment(payment);
+            return saved ? "Payment processed successfully!" : "Payment processing failed!";
+        }
+        return "Payment failed!";
     }
 
     @Override
     public String getPaymentById(int id) {
         Payment payment = repo.getPaymentById(id);
-        return (payment == null) ? "Payment was not found" : payment.toString();
+        return (payment == null) ? "Payment not found!" : payment.toString();
     }
 
     @Override
-    public String getPaymentsByTicketId(int ticketId) {
-        List<Payment> payments = repo.getPaymentsByTicketId(ticketId);
-        if (payments == null || payments.isEmpty()) {
-            return "No payments found for this ticket.";
+    public String getAllPayments() {
+        List<Payment> payments = repo.getAllPayments();
+        if (payments.isEmpty()) {
+            return "No payments found!";
         }
+
         StringBuilder response = new StringBuilder();
         for (Payment payment : payments) {
             response.append(payment.toString()).append("\n");
         }
         return response.toString();
     }
-
-    @Override
-    public String updatePaymentStatus(int id, String newStatus) {
-        boolean updated = repo.updatePaymentStatus(id, newStatus);
-        return (updated) ? "Payment status was updated successfully" : "Payment update failed";
-    }
-
 }

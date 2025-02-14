@@ -1,77 +1,45 @@
 package models;
+
+import strategy.PaymentStrategy;
+
 public class Payment {
     private int id;
     private int ticketId;
     private double amount;
-    private String paymentMethod; // 'credit_card', 'paypal', 'crypto'
-    private String status; // 'Pending', 'Completed', 'Failed'
+    private String paymentMethod;
+    private String status;
+    private PaymentStrategy paymentStrategy; // Strategy instance
 
-    public Payment() {
-        this.status = "Pending"; // По умолчанию платеж ожидает обработки
-    }
-
-    public Payment(int ticketId, double amount, String paymentMethod) {
+    public Payment(int ticketId, double amount, String paymentMethod, PaymentStrategy paymentStrategy) {
         this.ticketId = ticketId;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
-        this.status = "Pending";
+        this.paymentStrategy = paymentStrategy;
+        this.status = "Pending"; // Default status
     }
 
-    public int getId() {
-        return id;
+    public boolean processPayment() {
+        return paymentStrategy.processPayment(amount);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    // Getters & Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public int getTicketId() {
-        return ticketId;
-    }
+    public int getTicketId() { return ticketId; }
+    public void setTicketId(int ticketId) { this.ticketId = ticketId; }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-    public double getAmount() {
-        return amount;
-    }
+    public String getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
 
-    public void setAmount(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Сумма платежа должна быть положительной.");
-        }
-        this.amount = amount;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void processPayment() {
-        if (amount > 0) {
-            this.status = "Completed";
-        } else {
-            this.status = "Failed";
-        }
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     @Override
     public String toString() {
-        return "Payment{" +
-                "id=" + id +
-                ", ticketId=" + ticketId +
-                ", amount=" + amount +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return "Payment{id=" + id + ", ticketId=" + ticketId + ", amount=" + amount + ", paymentMethod='" + paymentMethod + "', status='" + status + "'}";
     }
 }

@@ -10,6 +10,7 @@ public class AuthController {
     private final IUserRepository userRepo;
     private final Scanner scanner = new Scanner(System.in);
     private boolean isAdministrator = false;
+    private int id=1;
 
     public AuthController(IUserRepository userRepo) {
         this.userRepo = userRepo;
@@ -36,8 +37,9 @@ public class AuthController {
             return;
         }
 
-        User user = new User(username, password, name, surname, birthdate, gender);
+        User user = new User(id, username, password, name, surname, birthdate, String.valueOf(gender));
         boolean created = userRepo.createUser(user);
+        id++;
         System.out.println(created ? "User registered successfully!" : "Registration failed.");
     }
 

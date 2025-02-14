@@ -48,4 +48,3 @@ public class ReviewController implements IReviewController {
         return (deleted) ? "Review was deleted successfully" : "Review deletion failed";
     }
 }
-

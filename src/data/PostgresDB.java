@@ -4,77 +4,52 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class PostgresDB implements IDB{
-    private String host;
-    private String username; //postgres username
-    private String password; //postgres password
-    private String dbName; //postgres database
-
+public class PostgresDB implements IDB {
+    private static PostgresDB instance;
     private Connection connection;
+    private final String url;
+    private final String username;
+    private final String password;
 
-    public PostgresDB(String host, String username, String password, String dbName) {
-        setHost(host);
-        setUsername(username);
-        setPassword(password);
-        setDbName(dbName);
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
+    private PostgresDB(String host, String username, String password, String dbName) {
+        this.url = "jdbc:postgresql://" + host + "/" + dbName;
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getDbName() {
-        return dbName;
-    }
-
-    public void setDbName(String dbName) {
-        this.dbName = dbName;
+    public static synchronized PostgresDB getInstance(String host, String username, String password, String dbName) {
+        if (instance == null) {
+            instance = new PostgresDB(host, username, password, dbName);
+        }
+        return instance;
     }
 
     @Override
     public Connection getConnection() {
-        String connectionUrl = host + "/" + dbName;
-        try {
-            if(connection != null && !connection.isClosed()) {
-
-                return connection;
-            }
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(connectionUrl, username, password);
-            return connection;
-        }catch (Exception e) {
-            System.out.println("Failed to connect to database: " + e.getMessage());
+        if (connection != null) {
+            try {
+                if (!connection.isClosed()) {
+                    return connection;
+                }
+            } catch (SQLException ignored) {}
         }
-        return null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            System.out.println("failed to connect to database: " + e.getMessage());
+        }
+        return connection;
     }
 
     @Override
     public void close() {
-        if(connection != null) {
-            try{
+        if (connection != null) {
+            try {
                 connection.close();
-            }catch (SQLException e) {
-                System.out.println("Failed to close connection" + e.getMessage());
+                connection = null;
+            } catch (SQLException e) {
+                System.out.println("failed to close connection: " + e.getMessage());
             }
         }
     }

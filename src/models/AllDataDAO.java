@@ -1,5 +1,7 @@
 package models;
 
+import data.PostgresDB;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -12,8 +14,8 @@ import java.util.List;
 public class AllDataDAO {
     private final Connection connection;
 
-    public AllDataDAO() {
-        this.connection = connection;
+    public AllDataDAO(Connection con) {
+        connection = con;
     }
 
     private List<AllData> executeQuery(String query) {

@@ -16,10 +16,19 @@ import repositories.rInterface.ITicketRepository;
 import repositories.AirplaneRepository;
 import repositories.TicketRepository;
 
+import java.sql.Connection;
+
 public class Main {
     public static void main(String[] args) {
-        // Initialize database connection
-        IDB db = new PostgresDB("jdbc:postgresql://localhost:5432", "postgres", "0000", "aviatickets");
+        PostgresDB db = PostgresDB.getInstance("localhost", "postgres", "password", "airline");
+
+        Connection conn = db.getConnection();
+        if (conn != null) {
+            System.out.println("Connection to database successful!");
+        } else {
+            System.out.println("Error connecting to database.");
+        }
+        db.close();
 
         // Initialize repositories
         IUserRepository userRepo = new UserRepository(db);
@@ -34,7 +43,7 @@ public class Main {
         ITicketController ticketController = new TicketController(ticketRepo);
 
         // Launch the application
-        AirplaneTicketApp app = new AirplaneTicketApp(ticketController, airplaneController, flightController, new AuthController(userRepo));
+        AirplaneTicketApp app = new AirplaneTicketApp(ticketController, airplaneController, flightController);
         app.start();
 
         db.close();

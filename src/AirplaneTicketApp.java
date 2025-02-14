@@ -10,8 +10,6 @@ import roles.GuestUser;
 import roles.ManagerUser;
 import repositories.PaymentRepository;
 import security.RoleChecker;
-import strategy.CreditCardPayment;
-import strategy.PayPalPayment;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -110,13 +108,13 @@ public class AirplaneTicketApp {
         String cardNumber = scanner.nextLine();
         System.out.print("Enter card holder name: ");
         String cardHolder = scanner.nextLine();
-        paymentController.processPayment(price, new CreditCardPayment(cardNumber, cardHolder));
+        paymentController.processPayment(price, "CreditCard", 0);
     }
 
     private void processPayPalPayment(PaymentController paymentController, double price) {
         System.out.print("Enter PayPal email: ");
         String email = scanner.nextLine();
-        paymentController.processPayment(price, new PayPalPayment(email));
+        paymentController.processPayment(price, "PayPal", 0);
     }
 
     private void manageAirplanes() {

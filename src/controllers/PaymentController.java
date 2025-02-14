@@ -17,7 +17,7 @@ public class PaymentController implements IPaymentController {
     }
 
     @Override
-    public String processPayment(int ticketId, double amount, String paymentMethod) {
+    public String processPayment(double amount, String paymentMethod, int ticketId) {
         PaymentStrategy paymentStrategy;
 
         // Selecting strategy dynamically

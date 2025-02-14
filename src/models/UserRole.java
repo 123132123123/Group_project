@@ -6,6 +6,11 @@ public enum UserRole {
     EDITOR,
     USER;
 
-    public boolean equalsIgnoreCase(UserRole requiredRole) {
+    public boolean equalsIgnoreCase(UserRole userRole) {
+        if(userRole==ADMIN){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
